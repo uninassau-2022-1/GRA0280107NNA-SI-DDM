@@ -1,0 +1,31 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Candidato</ion-card-subtitle>
+    <ion-card-title>Digite o código do seu candidato</ion-card-title>
+  </ion-card-header>
+
+
+  <ion-input type="number" maxlength="2" [(ngModel)]="candidato" placeholder="Digite o código do candidato que deseja votar"></ion-input>
+  <section class="full-width">
+    <ion-button color="success" expand="block">Corrige</ion-button>
+    <ion-button color="warning" expand="block" (click)="votarCandidato()">Confirma</ion-button>
+  </section>
+</ion-card>
+  <ion-content>
+    <ion-list>
+      <ion-list-header> Lista de candidatos </ion-list-header>
+      </ion-list>
+      <ion-item>
+        <ion-label>Quantidade total de votos: {{quantidadeVot}}</ion-label>
+        </ion-item>
+      <ion-item *ngFor="let candidatos of listaCandidatos">
+        <ion-avatar slot="start">
+          <img src="../../assets/eleicoes.jpeg" />
+        </ion-avatar>
+        <ion-label >
+          <h2>{{candidatos.name}}</h2>
+          <h3>Quantidade de votos: {{candidatos.qntvotos}}</h3>
+          <p>Código candidato: {{candidatos.codigo}}</p>
+          <p>Porcentagem de votos do candidato: {{candidatos.porcentagem}} %</p>
+        </ion-label>
+        

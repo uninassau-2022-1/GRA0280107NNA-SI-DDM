@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Urna Eletrônica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Urna Eletrônica</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngIf="candidate !== null">
+          <ion-avatar slot="start">
+            <ion-img src="../../assets/user-fem.png"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <span>Nome: {{candidate?.name}}</span> <br />
+            <span>Partido: {{candidate?.electoralParty }}</span><br />
+            <span> Vice: {{candidate?.vice}}</span><br />
+            <br />
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Número</ion-label>
+          <ion-input
+          [(ngModel)]="search"
+            placeholder="123"
+            (ionChange)="filterCandidate($event.target.value)"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button color="medium" (click)="toCorrect()"
+              >Corrige</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button color="success" (click)="submitElection()"
+              >Confirma</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid *ngIf="candidatesView !== null">
+    <ion-row *ngFor="let candidate of candidatesView">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-icon
+              name="person-circle-outline"
+              class="style-item-list"
+            ></ion-icon>
+            Nome: {{candidate.name }} - | - Numero: {{candidate.numberId }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="container-texto">
+    <ion-text color="dark">
+      <h6>Total de votos válidos apurados: {{ totalVotes }}</h6>
+    </ion-text>
+    <ion-text color="dark" *ngFor="let candidate of candidates">
+      <h6>
+        Candidato {{candidate.numberId}}: {{ candidate.countVotes }} votos, {{ candidate.percentage.toFixed(3)
+        }}% do total
+      </h6>
+    </ion-text>
+  
+  </div>
+</ion-content>

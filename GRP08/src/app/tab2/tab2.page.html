@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Urna Eletrônica
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-input class="input-border" placeholder='Digite o número do candidato' type="tel" maxlength="2" [(ngModel)]="searchCandidates" animated required>
+  </ion-input>
+  <ion-button color="medium" (click)="inputBlank()" value="0">
+    BRANCO
+  </ion-button>
+  <ion-button color="primary" (click)="clearSearch()">
+    CORRIGE
+  </ion-button>
+  <ion-button color="success" class="button" (click)="calculateVotes()">
+     CONFIRMA
+  </ion-button>
+
+  <ion-card *ngFor="let candidate of candidates | filter:searchCandidates">
+    <ion-img src="{{candidate.image}}"> </ion-img>
+    <ion-card-header>
+      <ion-button color="danger">{{candidate.number}}</ion-button>
+      <ion-card-title>{{candidate.name}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <h3 class="text-center">RESULTADO PARCIAL</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label> Total de votos apurados: {{count}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Candidato 7: {{candidate1}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Candidato 10: {{candidate2}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Candidato 25: {{candidate3}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Urna Eletrônica
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inicial</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card class="ion-margin">
+    <ion-item>
+      <ion-thumbnail class="ion-margin-start">
+        <ion-img src="../../assets/photos/default.png">
+        </ion-img>
+      </ion-thumbnail>
+      <ion-label class="ion-margin-start">
+        <p> {{ nameC }} </p>
+        <br>
+        <p> {{ partyC }} </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-input type="number" placeholder="Preencha com o número do candidato" class="ion-margin"
+      (ionChange)="onChangeInput()" [(ngModel)]="voteInput">
+    </ion-input>
+
+    <ion-row class="ion-justify-content-center ion-margin">
+      <ion-button color="warning" expand="full" size="default" (click)="clear()">Corrige</ion-button>
+      <ion-button color="success" expand="full" size="default" (click)="confirm()">Confirma</ion-button>
+    </ion-row>
+  </ion-card>
+
+  <ion-row class="ion-justify-content-center ion-margin">
+    <ion-item *ngFor="let candidate of candidateList">
+      <div class="ion-margin">
+        <ion-thumbnail>
+          <ion-img src="../../assets/photos/default.png">
+          </ion-img>
+        </ion-thumbnail>
+        <div class="ion-text-center">
+          <ion-label>{{ candidate.numberCand }}</ion-label>
+        </div>
+      </div>
+    </ion-item>
+  </ion-row>
+
+  <div class="ion-text-justify ion-margin" style="border-top: 2px solid rgba(4, 4, 199, 0.459);">
+    <ion-row class="ion-justify-content-center ion-margin">
+      <ion-label>
+        <h2><strong>Votos Válidos</strong></h2>
+      </ion-label>
+    </ion-row>
+    <br>
+    <ion-item *ngFor="let vote of voteList">
+      <ion-label>
+        Candidato {{ vote.voteStr }}: {{ vote.count }} votos.
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>
